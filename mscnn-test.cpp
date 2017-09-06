@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 		return -1;
 	}
 	std::string file = argv[1];
-	int gpu = 1;
+	int gpu = 0;
 	int device_id = 0;
 
 	// loads the detect net
@@ -29,8 +29,10 @@ int main(int argc, char **argv)
 
 	cv::Mat img = cv::imread(file, -1);
 
+	printf("Ready for prediction\n");
 	// forward the image through the network
 	std::vector<float> result = mscnn.Predict(img);
+	printf("Prediction done\n");
 
 	for (unsigned int i = 0; i < result.size(); i++)
 	{
